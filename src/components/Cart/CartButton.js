@@ -11,10 +11,12 @@ const CartButton = (props) => {
     dispatch(cartActions.toogleShowHiddeCart())
   }
 
+  const itemQuantity = items.reduce((acumulated, item) => acumulated + item.quantity, 0)
+
   return (
     <button className={classes.button} onClick={handlerToogleCart}>
       <span>My Cart</span>
-      <span className={classes.badge}>{items.length}</span>
+      <span className={classes.badge}>{itemQuantity}</span>
     </button>
   );
 };
