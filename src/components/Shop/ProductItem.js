@@ -8,8 +8,6 @@ const ProductItem = (props) => {
   const {id, title, price, description } = props;
   const item = {id, title, price, description};
 
-  console.log('item CartItem --> ', item);
-
   const dispatch = useDispatch();
 
   const handlerAddItem = (item) => {
