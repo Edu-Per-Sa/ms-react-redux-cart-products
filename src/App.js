@@ -11,6 +11,7 @@ function App() {
   return (
     <Layout>
       {showCart && <Cart />}
+      {!showCart && <h3 className='cart-hidden'> Please, click on the cart Button to show it...</h3>}
       <Products />
     </Layout>
   );

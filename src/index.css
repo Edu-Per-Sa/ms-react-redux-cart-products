@@ -29,3 +29,10 @@ button:active {
   border-color: #1ac5d1;
   color: white;
 }
+
+.cart-hidden { 
+  color: rgba(254, 199, 0, 0.984);
+  margin: 2rem auto;
+  text-align: center;
+  /* text-transform: uppercase; */
+}
