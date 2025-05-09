@@ -18,12 +18,22 @@ reducers: {
         if (indexItem >= 0) {
             state.items[indexItem].quantity += 1;
         } else {
-            state.items.unshift({...action.payload.item, quantity: 1});
+            state.items.push({...action.payload.item, quantity: 1});
         }
 
     },
     removeItem: (state, action) => {
-        state.items = state.items.filter((item) => item.id !== action.payload.id);
+        const idSended = action.payload.id;
+        const indexItem = state.items.findIndex((item, index, obj) => {
+            console.log('Obj --> ', obj);
+            return item.id === idSended
+        })
+
+        if (state.items[indexItem].quantity > 1){
+            state.items[indexItem].quantity -= 1;
+        } else {
+            state.items = state.items.filter((item) => item.id !== action.payload.id);
+        }
     },
     toogleShowHiddeCart: (state) => {
         state.showCart = !state.showCart;
