@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './CartButton.module.css';
-import { cartActions } from '../store/cart-slice';
+import { uiActions } from '../store/ui-slice';
 
 const CartButton = (props) => {
 
@@ -8,7 +8,7 @@ const CartButton = (props) => {
   const items = useSelector(state => state.cart.items);
 
   const handlerToogleCart = () => {
-    dispatch(cartActions.toogleShowHiddeCart())
+    dispatch(uiActions.toogleShowHiddeCart())
   }
 
   const itemQuantity = items.reduce((acumulated, item) => acumulated + item.quantity, 0)
