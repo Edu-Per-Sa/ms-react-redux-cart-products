@@ -9,16 +9,12 @@ const urlProducts = 'https://redux-cart-fa5bd-default-rtdb.europe-west1.firebase
 
 let initialProducts = [];
 
-let times = 0;
-
 const Products = (props) => {
 
   const [dataProducts, setDataProducts] = useState(initialProducts);
   const fetchingProducts = useSelector(state => state.ui.fetchingProducts);
 
   const dispatch = useDispatch();
-
-  times += 1;
 
   useEffect(() => {
     async function gettingProducts() {
@@ -39,8 +35,6 @@ const Products = (props) => {
     gettingProducts();
 
   }, [dispatch])
-
-  console.log("times ---> ", times, "Products --->", dataProducts, "fetchingProducts ---> ", fetchingProducts);
 
   return (
     <section className={classes.products}>

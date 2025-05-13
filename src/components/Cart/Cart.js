@@ -2,12 +2,21 @@ import { useSelector } from 'react-redux';
 import Card from '../UI/Card';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
+// import { useEffect } from 'react';
+
+// function setCartLocalStore(cartItems) {
+//   localStorage.setItem("myCart", JSON.stringify(cartItems));
+// }
 
 const Cart = (props) => {
 
   const items = useSelector(state => state.cart.items);
 
-  // console.log('items CART --->', items);
+  // useEffect(() => {
+  //   setCartLocalStore(items);
+  //   console.log("useEffect ---")
+  // }, [items])
+
   return (
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
@@ -16,9 +25,9 @@ const Cart = (props) => {
           key={item.id}
           item={{
             id: item.id,
-            title: item.title, 
-            quantity: item.quantity, 
-            total: item.quantity * item.price, 
+            title: item.title,
+            quantity: item.quantity,
+            total: item.quantity * item.price,
             price: item.price,
             description: item.description
           }}
