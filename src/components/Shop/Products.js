@@ -1,17 +1,20 @@
+
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import ProductItem from './ProductItem';
 import classes from './Products.module.css';
-// import { DUMMY_PRODUCTS } from '../../DUMMY_DATA/DUMMY_PRODUCTS';
-import { useEffect, useState } from 'react';
 import { uiActions } from '../store/ui-slice';
+import Error from '../Error/Error';
 
-const urlProducts = 'https://redux-cart-fa5bd-default-rtdb.europe-west1.firebasedatabase.app/cart-products.json';
+const urlGetProducts = 'https://redux-cart-fa5bd-default-rtdb.europe-west1.firebasedatabase.app/cart-products.json';
 
 let initialProducts = [];
 
 const Products = (props) => {
 
   const [dataProducts, setDataProducts] = useState(initialProducts);
+  const [error, setError] = useState(null);
   const fetchingProducts = useSelector(state => state.ui.fetchingProducts);
 
   const dispatch = useDispatch();
@@ -20,11 +23,13 @@ const Products = (props) => {
     async function gettingProducts() {
 
       dispatch(uiActions.setFetchingProducts(true));
+      setError(null);
 
-      const response = await fetch(urlProducts);
-      
+      const response = await fetch(urlGetProducts);
+
       if (!response.ok) {
-        // Manage the error
+        setError(await response.json());
+        return;
       }
 
       const dataResponse = await response.json();
@@ -39,8 +44,9 @@ const Products = (props) => {
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
-      {fetchingProducts && <h2> Fetching products... </h2>}
-      {!fetchingProducts && <ul>
+      {error && <Error message={`Error buscando los productos ---> ${error.error}`}/>}
+      {fetchingProducts && !error && <h2> Fetching products... </h2>}
+      {!fetchingProducts && !error && <ul>
         {dataProducts.map((item) => <ProductItem
           key={item.id}
           id={item.id}
