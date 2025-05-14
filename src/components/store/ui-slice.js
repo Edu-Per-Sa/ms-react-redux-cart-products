@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     showCart: true,
+    showInfoApp: true,
     fetchingProducts: false,
+    infoEN: true,
 }
 
 const uiSlice = createSlice({
@@ -14,6 +16,15 @@ const uiSlice = createSlice({
         },
         toogleShowHiddeCart: (state) => {
             state.showCart = !state.showCart;
+        },
+        showInfoApp: (state) => {
+            state.showInfoApp = true;
+        },
+        hiddeInfoApp: (state) => {
+            state.showInfoApp = false;
+        },
+        setLanguageInfo: (state) => {
+            state.infoEN = state.infoEN ? false : true;
         },
     }
 });
