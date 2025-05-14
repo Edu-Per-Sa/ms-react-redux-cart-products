@@ -16,7 +16,7 @@ const uiSlice = createSlice({
             state.showCart = !state.showCart;
         },
     }
-})
+});
 
 export const uiActions = uiSlice.actions;
 
