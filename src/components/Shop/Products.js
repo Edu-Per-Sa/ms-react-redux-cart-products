@@ -44,7 +44,7 @@ const Products = (props) => {
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
-      {error && <Error message={`Error buscando los productos ---> ${error.error}`}/>}
+      {error && <Error message={`Error buscando los productos en firebase... Error: ${error.error}`}/>}
       {fetchingProducts && !error && <h2> Fetching products... </h2>}
       {!fetchingProducts && !error && <ul>
         {dataProducts.map((item) => <ProductItem
